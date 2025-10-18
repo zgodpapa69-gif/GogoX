@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="hi">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Prince Apk Hub</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --gold:#ffcc00;
+    --bg:#000;
+    --card:#0f0f0f;
+    --muted:#bfbfbf;
+  }
+  html,body{height:100%;margin:0;background:var(--bg);font-family:'Poppins',sans-serif;color:var(--gold);}
+  body{
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200"><text x="0" y="20" font-size="18" fill="%23000"> </text></svg>');
+    background-size: cover;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  /* Header */
+  .header{
+    padding:28px 18px 10px;
+    text-align:center;
+  }
+  .logo {
+    display:inline-flex;align-items:center;gap:12px;
+  }
+  .logo img{width:64px;height:64px;object-fit:contain;filter: drop-shadow(0 2px 6px rgba(0,0,0,.7));}
+  .site-title{font-size:28px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--gold);
+    text-shadow: 0 6px 0 rgba(0,0,0,.6);
+  }
+  .tag{color:var(--muted);margin-top:6px;font-size:14px;}
+
+  /* Search */
+  .search-wrap{display:flex;justify-content:center;padding:14px 18px;}
+  .search{
+    width:100%;max-width:900px;display:flex;gap:8px;
+    background:#111;padding:10px;border-radius:999px;align-items:center;
+    box-shadow: 0 4px 18px rgba(0,0,0,.6);
+  }
+  .search input{
+    flex:1;background:transparent;border:0;outline:0;padding:8px 12px;color:var(--gold);font-size:15px;
+  }
+  .search button{
+    background:var(--gold);border:0;padding:10px 14px;border-radius:999px;cursor:pointer;font-weight:700;
+  }
+
+  /* Grid */
+  .grid{padding:20px;display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:18px;max-width:1100px;margin:0 auto;}
+  .card{
+    background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.2));
+    border-radius:14px;padding:12px;display:flex;flex-direction:column;align-items:center;gap:10px;
+    box-shadow: 0 6px 18px rgba(0,0,0,.6);border:1px solid rgba(255,204,0,0.03);
+  }
+  .card .icon{width:88px;height:88px;border-radius:12px;overflow:hidden;background:#222;display:flex;align-items:center;justify-content:center;}
+  .card img{width:100%;height:100%;object-fit:cover;}
+  .card .name{color:var(--gold);font-weight:700;font-size:16px;text-align:center;}
+  .card .sub{color:var(--muted);font-size:13px;}
+  .card .btns{display:flex;gap:8px;margin-top:6px;}
+  .btn{
+    padding:8px 12px;border-radius:10px;border:0;cursor:pointer;font-weight:600;
+  }
+  .btn-primary{background:var(--gold);color:#000;}
+  .btn-disabled{background:#222;color:var(--muted);}
+
+  /* Footer */
+  footer{padding:22px;text-align:center;color:var(--muted);font-size:13px;}
+
+  /* responsive tweaks */
+  @media(max-width:420px){
+    .site-title{font-size:22px}
+    .logo img{width:54px;height:54px}
+    .card .icon{width:72px;height:72px}
+  }
+</style>
+</head>
+<body>
+
+  <header class="header">
+    <div class="logo">
+      <!-- skull image: you can replace with your skull png -->
+      <img src="https://i.imgur.com/3mKXbqK.png" alt="skull">
+      <div>
+        <div class="site-title">Prince Apk Hub</div>
+        <div class="tag">King-stuff.in • Download & Reviews (Legal content only)</div>
+      </div>
+    </div>
+  </header>
+
+  <div class="search-wrap">
+    <div class="search" role="search">
+      <input id="searchInput" type="search" placeholder="Search APKs..." aria-label="Search APKs">
+      <button id="clearBtn" title="Clear">×</button>
+      <button id="searchBtn" title="Search">🔍</button>
+    </div>
+  </div>
+
+  <main>
+    <div id="grid" class="grid" aria-live="polite">
+      <!-- Cards injected by JS -->
+    </div>
+  </main>
+
+  <footer>
+    © <strong>Prince Apk Hub</strong> — <span id="domain">King-stuff.in</span><br>
+    Note: This demo template **does not host** mod/cracked APKs. Replace buttons with legal links only.
+  </footer>
+
+<script>
+  // Sample data (replace with your legal entries)
+  const apks = [
+    { id:1, name:"Londiya Gram Pro", desc:"Photo editor - demo entry", icon:"https://i.imgur.com/4Y3w8QG.png", url:"#placeholder" },
+    { id:2, name:"FAM V2", desc:"Social client - demo entry", icon:"https://i.imgur.com/hkQw7bZ.png", url:"#placeholder" },
+    { id:3, name:"Snap King", desc:"Snap tools - demo entry", icon:"https://i.imgur.com/7kQw3Qf.png", url:"#placeholder" },
+    { id:4, name:"ChatX Pro", desc:"Chat tools - demo", icon:"https://i.imgur.com/4Y3w8QG.png", url:"#placeholder" },
+    { id:5, name:"MusicWave", desc:"Music player - demo", icon:"https://i.imgur.com/hkQw7bZ.png", url:"#placeholder" }
+  ];
+
+  const grid = document.getElementById('grid');
+
+  function render(list){
+    grid.innerHTML = '';
+    if(list.length===0){
+      grid.innerHTML = '<div style="grid-column:1/-1;text-align:center;color:var(--muted);padding:40px 10px">Koi result nahi mila.</div>';
+      return;
+    }
+    list.forEach(a=>{
+      const card = document.createElement('div'); card.className='card';
+      card.innerHTML = `
+        <div class="icon"><img src="${a.icon}" alt="${a.name}"></div>
+        <div class="name">${a.name}</div>
+        <div class="sub">${a.desc}</div>
+        <div class="btns">
+          <button class="btn btn-primary" onclick="handleDownload(${a.id})">Download</button>
+          <button class="btn btn-disabled" onclick="openDetails(${a.id})">Details</button>
+        </div>
+      `;
+      grid.appendChild(card);
+    });
+  }
+
+  function handleDownload(id){
+    // IMPORTANT: This is a safe placeholder.
+    // Replace with Play Store or legal hosted file link only.
+    const item = apks.find(x=>x.id===id);
+    if(!item) return;
+    alert('Download placeholder for: ' + item.name + '\n\nNote: Replace this with a legal Play Store link or your own licensed APK hosting.');
+  }
+
+  function openDetails(id){
+    const item = apks.find(x=>x.id===id);
+    if(!item) return;
+    alert(item.name + '\\n\\n' + item.desc + '\\n\\n(Use this page to add screenshots, changelog, legal links.)');
+  }
+
+  // Search logic
+  const input = document.getElementById('searchInput');
+  const searchBtn = document.getElementById('searchBtn');
+  const clearBtn = document.getElementById('clearBtn');
+
+  function doSearch(){
+    const q = input.value.trim().toLowerCase();
+    if(!q){ render(apks); return; }
+    const filtered = apks.filter(x => x.name.toLowerCase().includes(q) || x.desc.toLowerCase().includes(q));
+    render(filtered);
+  }
+
+  input.addEventListener('input', doSearch);
+  searchBtn.addEventListener('click', doSearch);
+  clearBtn.addEventListener('click', ()=>{ input.value=''; doSearch(); });
+
+  // initial render
+  render(apks);
+</script>
+
+</body>
+</html>
